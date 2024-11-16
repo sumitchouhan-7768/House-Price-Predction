@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 from scipy.stats import variation, zscore
 import scipy.stats as stats
-
+import pickle
 # Import Dataset
 df = pd.read_csv(r"C:\Users\HP\.vscode\.vscode\.vscode\Machine Learning\House_data.csv")
 
@@ -87,3 +87,22 @@ print("Sum of Squares Total (SST):", SST)
 # R-Squared calculation
 r_square = 1 - (SSE / SST)
 print("R-Squared:", r_square)
+
+# Check model performance
+bias = regressor.score(x_train, y_train)
+variance = regressor.score(x_test, y_test)
+train_mse = mean_squared_error(y_train, regressor.predict(x_train))
+test_mse = mean_squared_error(y_test,pred)
+
+print(f"Training Score (R^2): {bias:.2f}")
+print(f"Testing Score (R^2): {variance:.2f}")
+print(f"Training MSE: {train_mse:.2f}")
+print(f"Test MSE: {test_mse:.2f}")
+#save the trained model to disk
+filename = 'LR_House_pred.pkl'
+with open(filename,'wb') as file:
+    pickle.dump(regressor,file)
+print("Model has been pickled and saved as LR_House_pred.pkl")    
+
+import os
+print(os.getcwd())

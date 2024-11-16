@@ -64,7 +64,7 @@ print(f"Test MSE: {test_mse:.2f}")
 filename = 'linear_regression_model.pkl'
 with open(filename, 'wb') as file:
     pickle.dump(regressor, file)
-print("Model has been pickled and saved as linear_regression_model.pkl")
+    print("Model has been pickled and saved as linear_regression_model.pkl")
 
 import os
 print(os.getcwd())
